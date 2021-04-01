@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Likes</h2>
+  <table class="table">
+    <tbody>
+      {% for results in result %}
+      <tr>
+        <td class="align-middle" width="250">
+            <img src="{{ results.image }}" height="150" width="200">
+        </td>
+        <td class="align-middle" style="color:#8d99ae;">
+            <h4 style="color:#2b2d42;">{{ results.eventname }}</h4>
+            <p style="color:#8d99ae;">{{ results.description }}</p>
+            <i class="fa fa-clock-o" aria-hidden="true" style="color:#8d99ae;"></i>{{ results.time }}
+            <p><i class="fa fa-map-marker" aria-hidden="true" style="color:#8d99ae;"></i>{{ results.location }}</p>
+        </td>
+        <td class="align-middle">
+            <form action="" method="post">
+
+                {% if results.islike == 1 %}
+                    <a href="dislike_event?eid={{ results.id }}" >
+                    <i class="fa fa-heart fa-2x" aria-hidden="true" style="color:#ef233c;"></i>
+                {% else %}
+                    <a href="like_event?eid={{ results.id }}">
+                     <i class="fa fa-heart-o fa-2x" aria-hidden="true" style="color:#ef233c;"></i>
+                {% endif %}
+                </a>
+            </form>
+        </td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock %}
